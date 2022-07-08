@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import { Route, useParams, ROutes, BrowserRouter, Routes} from "react-router-dom"
 
 import FooterBar from './components/FooterBar';
 import NavBar from './components/NavBar';
@@ -16,8 +17,17 @@ class App extends React.Component
     {
         return (
             <div>
-              <NavBar/>
-                <h1>Hello React!</h1>
+                <NavBar/>
+
+                <BrowserRouter>
+                  <Routes>
+                    <Route exact path="/" element={<HomeScreen/>}/>
+                    <Route path="/products" element={<ProductsScreen/>}/>
+                    <Route path="/products/:productId" element={<SingleProductScreen/>}/>
+                    <Route path="*" element={<NoScreen/>}/>
+                  </Routes>
+                </BrowserRouter>
+
                 <FooterBar/>
             </div>
         );
